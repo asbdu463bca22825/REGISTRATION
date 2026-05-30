@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" href="style.css">
+
 <style>
 body{
     font-family: Arial, sans-serif;
