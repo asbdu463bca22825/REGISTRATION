@@ -1,82 +1,85 @@
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Form</title>
+    <title>Registration Form Validation</title>
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f2f2f2;
-}
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f2f2f2;
+        }
 
-.container{
-    width:350px;
-    background:white;
-    padding:20px;
-    margin:50px auto;
-    border-radius:10px;
-}
+        .container{
+            width:350px;
+            background:white;
+            padding:20px;
+            margin:50px auto;
+            border-radius:10px;
+        }
 
-h2{
-    text-align:center;
-}
+        h2{
+            text-align:center;
+        }
 
-input{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    margin-bottom:10px;
-}
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:10px;
+            box-sizing:border-box;
+        }
 
-button{
-    width:100%;
-    padding:10px;
-    background:blue;
-    color:white;
-    border:none;
-}
-</style>
+        button{
+            width:100%;
+            padding:10px;
+            background:blue;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="container">
 
     <h2>Registration Form</h2>
-<form onsubmit="return validateForm()">
 
-<label>Full Name</label>
-<input type="text" id="name" placeholder="Enter Full Name">
+    <form onsubmit="return validateForm();">
 
-<label>Email</label>
-<input type="email" id="email" placeholder="Enter Email">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter Full Name">
 
-<label>Password</label>
-<input type="password" id="password" placeholder="Enter Password">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter Email">
 
-<label>Confirm Password</label>
-<input type="password" id="confirmPassword" placeholder="Confirm Password">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter Password">
 
-<label>Mobile Number</label>
-<input type="text" id="mobile" placeholder="Enter Mobile Number">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
 
-<button type="submit">Register</button>
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="Enter Mobile Number">
 
-</form>
-  </div>
+        <button type="submit">Register</button>
+
+    </form>
+
+</div>
+
 <script>
 function validateForm()
 {
     let name = document.getElementById("name").value;
-
     let email = document.getElementById("email").value;
-
     let mobile = document.getElementById("mobile").value;
-
     let password = document.getElementById("password").value;
-
-    let confirmPassword =
-    document.getElementById("confirmPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
 
     if(name == "")
     {
@@ -84,8 +87,7 @@ function validateForm()
         return false;
     }
 
-    let emailPattern =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if(!emailPattern.test(email))
     {
@@ -93,8 +95,7 @@ function validateForm()
         return false;
     }
 
-    let mobilePattern =
-    /^[0-9]{10}$/;
+    let mobilePattern = /^[0-9]{10}$/;
 
     if(!mobilePattern.test(mobile))
     {
@@ -115,11 +116,9 @@ function validateForm()
     }
 
     alert("Registration Successful");
-
-    return true;
+    return false;
 }
 </script>
+
 </body>
 </html>
-
-
