@@ -64,9 +64,9 @@ button{
     <button type="submit">Register</button>
 
 </form>
-   
-
-</div>
+  </div>
+</body>
+</html>
 <script>
 function validateForm()
 {
@@ -123,5 +123,4 @@ function validateForm()
 }
 </script>
 
-</body>
-</html>
+
