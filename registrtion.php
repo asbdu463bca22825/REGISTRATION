@@ -44,26 +44,27 @@ button{
 
     <h2>Registration Form</h2>
 
-    <form>
+<form onsubmit="return validateForm()">
 
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter Full Name">
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Enter Full Name">
 
-        <label>Email</label>
-        <input type="email" placeholder="Enter Email">
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Enter Email">
 
-        <label>Password</label>
-        <input type="password" placeholder="Enter Password">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter Password">
 
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Confirm Password">
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
 
-        <label>Mobile Number</label>
-        <input type="text" placeholder="Enter Mobile Number">
+    <label>Mobile Number</label>
+    <input type="text" id="mobile" placeholder="Enter Mobile Number">
 
-        <button type="submit">Register</button>
+    <button type="submit">Register</button>
 
-    </form>
+</form>
+   
 
 </div>
 <script>
