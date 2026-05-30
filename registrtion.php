@@ -62,7 +62,7 @@ button{
     <label>Mobile Number</label>
     <input type="text" id="mobile" placeholder="Enter Mobile Number">
 
-    <button type="submit">Register</button>
+    <button type="submit" id="submit">Register</button>
 
 </form>
   </div>
