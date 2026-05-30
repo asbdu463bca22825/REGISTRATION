@@ -65,8 +65,6 @@ button{
 
 </form>
   </div>
-</body>
-</html>
 <script>
 function validateForm()
 {
@@ -122,5 +120,7 @@ function validateForm()
     return true;
 }
 </script>
+</body>
+</html>
 
 
