@@ -44,6 +44,7 @@ button{
 
     <h2>Registration Form</h2>
 
+
 <form onsubmit="return validateForm()">
 
     <label>Full Name</label>
