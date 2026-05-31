@@ -44,13 +44,10 @@
 </head>
 
 <body>
-
+ <form action="registration_connection.php" onsubmit="return validateForm();">
 <div class="container">
-</div>
 
   <h2>Registration Form</h2>
-
-    <form action="registration_connection.php" onsubmit="return validateForm();">
 
         <label>Full Name</label>
         <input type="text" id="name" placeholder="Enter Full Name">
@@ -68,6 +65,7 @@
         <input type="text" id="mobile" placeholder="Enter Mobile Number">
 
         <button type="submit">Register</button>
+<div>
 
     </form>
 
