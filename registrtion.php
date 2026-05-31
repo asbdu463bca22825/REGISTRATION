@@ -44,7 +44,7 @@
 </head>
 
 <body>
- <form action="registration_connection.php" onsubmit="return validateForm();">
+ <form action="registration_connection.php" method="post" onsubmit="return validateForm();">
 <div class="container">
 
   <h2>Registration Form</h2>
