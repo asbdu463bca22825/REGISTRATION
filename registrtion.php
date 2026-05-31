@@ -49,7 +49,7 @@
 
     <h2>Registration Form</h2>
 
-    <form onsubmit="return validateForm();">
+    <form action="registration_connection.php" onsubmit="return validateForm();">
 
         <label>Full Name</label>
         <input type="text" id="name" placeholder="Enter Full Name">
