@@ -1,0 +1,216 @@
+Task 1: Registration Form Design
+Objective
+Create a registration form using HTML and CSS.
+
+
+
+registration.html
+<!DOCTYPE html><html><head>    <title>Registration Form</title></head><body><form>    <h2>Registration Form</h2>    Name:    <input type="text" name="name"><br><br>    Email:    <input type="email" name="email"><br><br>    Mobile:    <input type="text" name="mobile"><br><br>    Password:    <input type="password" name="password"><br><br>    Confirm Password:    <input type="password" name="confirm_password"><br><br>    <input type="submit" value="Register"></form></body></html>
+Line-by-Line Explanation
+<!DOCTYPE html>
+Tells browser this is an HTML5 page.
+<html>
+Starts HTML document.
+<head>
+Contains page information.
+<title>Registration Form</title>
+Browser tab title.
+<body>
+Visible page content.
+<form>
+Starts the form.
+<input type="text">
+User enters name.
+<input type="email">
+User enters email.
+<input type="password">
+Password field hides text.
+<input type="submit">
+Submit button.
+
+Task 2: Registration Form Validation
+validation.js
+
+
+
+function validateForm(){    var name = document.getElementById("name").value;    var email = document.getElementById("email").value;    var mobile = document.getElementById("mobile").value;    var password = document.getElementById("password").value;    if(name=="")    {        alert("Name Required");        return false;    }    if(email=="")    {        alert("Email Required");        return false;    }    if(mobile.length!=10)    {        alert("Mobile must be 10 digits");        return false;    }    if(password.length<6)    {        alert("Password minimum 6 characters");        return false;    }    return true;}
+Explanation
+var name
+Stores entered name.
+if(name=="")
+Checks empty name.
+alert()
+Shows error message.
+return false
+Stops form submission.
+
+Task 3: Login Form using PHP
+login.html
+
+
+<form action="login.php" method="POST">Email:<input type="email" name="email">Password:<input type="password" name="password"><input type="submit" value="Login"></form>
+login.php
+<?php$email = $_POST['email'];$password = $_POST['password'];if($email=="admin@gmail.com" &&   $password=="123456"){    echo "Login Successful";}else{    echo "Invalid Login";}?>
+Explanation
+$_POST['email']
+Gets email from form.
+$_POST['password']
+Gets password.
+if()
+Checks login credentials.
+echo
+Displays result.
+
+Task 4: Registration and Login with Database
+
+Step 1
+
+ Database
+CREATE DATABASE student_db;
+Creates database.
+
+Step 2
+
+ Create Table
+CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(50),email VARCHAR(50),mobile VARCHAR(15),password VARCHAR(50));
+Explanation
+id
+Unique ID.
+AUTO_INCREMENT
+Automatically increases.
+VARCHAR(50)
+Stores text.
+
+Step 3
+
+ Database Connection
+db.php
+<?php$conn = mysqli_connect(    "localhost",    "root",    "",    "student_db");if(!$conn){    die("Connection Failed");}?>
+Explanation
+mysqli_connect()
+Connects PHP with MySQL.
+localhost
+Database server.
+root
+MySQL username.
+student_db
+Database name.
+
+Step 4 
+
+Registration Insert
+<?phpinclude 'db.php';$name = $_POST['name'];$email = $_POST['email'];$mobile = $_POST['mobile'];$password = $_POST['password'];$sql = "INSERT INTO users(name,email,mobile,password)VALUES('$name','$email','$mobile','$password')";mysqli_query($conn,$sql);echo "Registration Successful";?>
+Explanation
+include 'db.php';
+Loads database connection.
+INSERT INTO users
+Adds data into table.
+mysqli_query()
+Executes SQL query.
+
+Step 5 
+
+Login Check
+<?phpinclude 'db.php';$email = $_POST['email'];$password = $_POST['password'];$sql = "SELECT * FROM usersWHERE email='$email'AND password='$password'";$result = mysqli_query($conn,$sql);if(mysqli_num_rows($result)>0){    echo "Login Successful";}else{    echo "Invalid Login";}?>
+Explanation
+SELECT * FROM users
+Fetches matching user.
+mysqli_num_rows()
+Counts matching records.
+> 0
+User exists.
+
+CRUD Operations Required for
+
+ Task 4
+Read
+SELECT * FROM users;
+Display all users.
+Update
+UPDATE usersSET name='Madura'WHERE id=1;
+Update record.
+Delete
+DELETE FROM usersWHERE id=1;
+Delete record.
+
+Task 5:
+Convert Code to OOP
+
+
+Database Class
+<?php
+class Database
+{    
+public $conn;    
+function __construct()   
+ {        
+$this->conn = mysqli_connect(           
+ "localhost",           
+ "root",           
+ "",            "student_db"       
+ );    
+}
+}
+$db = new Database();
+?>
+Explanation
+class Database
+Creates a class.
+public $conn
+Connection variable.
+__construct()
+Runs automatically when object is created.
+new Database()
+Creates object.
+
+Final Project Flow
+Task 1
+Registration Form Design (HTML + CSS)
+⬇
+Task 2
+Client-side Validation (JavaScript)
+⬇
+Task 3
+Login Form with PHP
+⬇
+Task 4
+MySQL Database Connection + Registration + Login + CRUD
+⬇
+Task 5
+Convert Entire Project into OOP PHP
+Expected Viva Question
+Q: What is CRUD?
+
+
+C = Create (Insert)
+
+
+R = Read (Select)
+
+
+U = Update
+
+
+D = Delete
+
+
+Q: Why use POST?
+
+
+Secure
+
+
+Data not shown in URL
+
+
+Q: Why use MySQL?
+
+
+To store user data permanently.
+
+
+Q: Why use OOP?
+
+
+Code becomes reusable, organized, and easier to maintain.
+
