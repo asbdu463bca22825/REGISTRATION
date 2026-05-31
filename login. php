@@ -1,3 +1,107 @@
+
+<?php
+
+$message = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Server-side Validation
+    if(empty($email) || empty($password))
+    {
+        $message = "Please fill all fields";
+    }
+    else
+    {
+        // Sample login check
+        if($email == "admin@gmail.com" && $password == "123456")
+        {
+            $message = "Login Success";
+        }
+        else
+        {
+            $message = "Invalid Email or Password";
+        }
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f2f2f2;
+        }
+
+        .container{
+            width:350px;
+            margin:50px auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+            margin-top:15px;
+        }
+
+        h3{
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Login Form</h2>
+
+    <form method="POST">
+
+        <input type="email"
+               name="email"
+               placeholder="Enter Email">
+
+        <input type="password"
+               name="password"
+               placeholder="Enter Password">
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <h3><?php echo $message; ?></h3>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
 ###step----1  
 
                  
