@@ -46,8 +46,9 @@
 <body>
 
 <div class="container">
+</div>
 
-    <h2>Registration Form</h2>
+  <h2>Registration Form</h2>
 
     <form action="registration_connection.php" onsubmit="return validateForm();">
 
@@ -70,7 +71,6 @@
 
     </form>
 
-</div>
 
 <script>
 function validateForm()
