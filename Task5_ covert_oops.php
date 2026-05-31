@@ -96,3 +96,76 @@ $user->closeConnection();
 
 
 ##convert login in oops
+
+<?php
+
+class UserLogin
+{
+    private $conn;
+    public $message = "";
+
+    // Constructor
+    public function __construct()
+    {
+        $this->conn = mysqli_connect(
+            "localhost",
+            "root",
+            "",
+            "student_db"
+        );
+
+        if (!$this->conn)
+        {
+            die("Connection Failed");
+        }
+    }
+
+    // Login Method
+    public function loginUser($email, $password)
+    {
+        if (empty($email) || empty($password))
+        {
+            $this->message = "Please fill all fields";
+        }
+        else
+        {
+            $sql = "SELECT * FROM users
+                    WHERE email='$email'
+                    AND password='$password'";
+
+            $result = mysqli_query($this->conn, $sql);
+
+            if (mysqli_num_rows($result) > 0)
+            {
+                $this->message = "Login Success";
+            }
+            else
+            {
+                $this->message = "Invalid Email or Password";
+            }
+        }
+    }
+
+    // Close Connection
+    public function closeConnection()
+    {
+        mysqli_close($this->conn);
+    }
+}
+
+// Create Object
+$login = new UserLogin();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $login->loginUser($email, $password);
+
+    echo $login->message;
+}
+
+$login->closeConnection();
+
+?>
