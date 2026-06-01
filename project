@@ -1,0 +1,265 @@
+
+
+-----index. html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Registration Form</h2>
+
+<form action="register.php" method="POST" onsubmit="return validateForm()">
+
+<input type="text" id="name" name="name" placeholder="Name">
+
+<input type="email" id="email" name="email" placeholder="Email">
+
+<input type="text" id="mobile" name="mobile" placeholder="Mobile Number">
+
+<input type="password" id="password" name="password" placeholder="Password">
+
+<input type="password" id="confirm" placeholder="Confirm Password">
+
+<button type="submit">Register</button>
+
+</form>
+
+<p id="error"></p>
+
+</div>
+
+<script src="validation.js"></script>
+
+</body>
+</html>
+
+
+----style. css
+body{
+font-family: Arial;
+background:#f5f5f5;
+}
+
+.container{
+width:350px;
+margin:50px auto;
+padding:20px;
+background:white;
+box-shadow:0 0 10px gray;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:green;
+color:white;
+border:none;
+}
+
+-------validation. js
+function validateForm()
+{
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let mobile=document.getElementById("mobile").value;
+let password=document.getElementById("password").value;
+let confirm=document.getElementById("confirm").value;
+
+if(name=="" || email=="" || mobile=="" || password=="")
+{
+alert("All fields required");
+return false;
+}
+
+if(mobile.length!=10)
+{
+alert("Mobile must be 10 digits");
+return false;
+}
+
+if(password!=confirm)
+{
+alert("Passwords do not match");
+return false;
+}
+
+return true;
+}
+
+
+------stu_bd.sql
+CREATE DATABASE student_db;
+
+USE student_db;
+
+CREATE TABLE users(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100),
+mobile VARCHAR(15),
+password VARCHAR(255)
+);
+
+-----login. html
+<form action="login.php" method="POST">
+
+<input type="email" name="email" placeholder="Email">
+
+<input type="password" name="password" placeholder="Password">
+
+<button type="submit">Login</button>
+
+</form>
+
+
+-----dp. php
+<?php
+
+$conn=mysqli_connect(
+"localhost",
+"root",
+"",
+"student_db"
+);
+
+if(!$conn)
+{
+die("Connection Failed");
+}
+
+?>
+
+
+---+-register.php
+<?php
+
+include 'db.php';
+
+$name=$_POST['name'];
+$email=$_POST['email'];
+$mobile=$_POST['mobile'];
+$password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+
+$sql="INSERT INTO users(name,email,mobile,password)
+VALUES('$name','$email','$mobile','$password')";
+
+if(mysqli_query($conn,$sql))
+{
+echo "Registration Successful";
+}
+else
+{
+echo "Error";
+}
+
+?>
+
+
+
+------login. php
+<?php
+
+session_start();
+
+include 'db.php';
+
+$email=$_POST['email'];
+$password=$_POST['password'];
+
+$sql="SELECT * FROM users WHERE email='$email'";
+
+$result=mysqli_query($conn,$sql);
+
+if(mysqli_num_rows($result)>0)
+{
+$row=mysqli_fetch_assoc($result);
+
+if(password_verify($password,$row['password']))
+{
+$_SESSION['user']=$row['name'];
+
+header("Location: dashboard.php");
+}
+else
+{
+echo "Wrong Password";
+}
+}
+else
+{
+echo "User Not Found";
+}
+
+?>
+
+
+
+---dashboard. pho
+<?php
+session_start();
+
+if(!isset($_SESSION['user']))
+{
+header("Location: login.html");
+}
+?>
+
+<h2>Welcome <?php echo $_SESSION['user']; ?></h2>
+
+<a href="logout.php">Logout</a>
+
+
+---- undate. php
+<?php
+
+include 'db.php';
+
+$id=$_GET['id'];
+
+$sql="UPDATE users
+SET name='Updated User'
+WHERE id=$id";
+
+mysqli_query($conn,$sql);
+
+echo "Updated Successfully";
+
+?>
+
+---+delete.php
+<?php
+
+include 'db.php';
+
+$id=$_GET['id'];
+
+$sql="DELETE FROM users WHERE id=$id";
+
+mysqli_query($conn,$sql);
+
+echo "Deleted Successfully";
+
+?>
+
+
+----logout. php
+<?php
+
+session_start();
+session_destroy();
+
+header("Location: login.html");
+
+?>
+
+
