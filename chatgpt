@@ -1,0 +1,125 @@
+Based on the tasks shown in your images, the project is:
+Student Registration & Login System
+Technologies: HTML, CSS, JavaScript, PHP, MySQL
+Project Structure
+project/│├── index.html          (Registration Form)├── style.css├── validation.js├── register.php├── login.html├── login.php├── dashboard.php├── update.php├── delete.php├── logout.php├── db.php└── student_db.sql
+
+Task 1: Registration Form Design
+index.html
+<!DOCTYPE html><html><head><title>Registration Form</title><link rel="stylesheet" href="style.css"></head><body><div class="container"><h2>Registration Form</h2><form action="register.php" method="POST" onsubmit="return validateForm()"><input type="text" id="name" name="name" placeholder="Name"><input type="email" id="email" name="email" placeholder="Email"><input type="text" id="mobile" name="mobile" placeholder="Mobile Number"><input type="password" id="password" name="password" placeholder="Password"><input type="password" id="confirm" placeholder="Confirm Password"><button type="submit">Register</button></form><p id="error"></p></div><script src="validation.js"></script></body></html>
+
+style.css
+body{font-family: Arial;background:#f5f5f5;}.container{width:350px;margin:50px auto;padding:20px;background:white;box-shadow:0 0 10px gray;}input{width:100%;padding:10px;margin:10px 0;}button{width:100%;padding:10px;background:green;color:white;border:none;}
+
+Task 2: Form Validation
+validation.js
+function validateForm(){let name=document.getElementById("name").value;let email=document.getElementById("email").value;let mobile=document.getElementById("mobile").value;let password=document.getElementById("password").value;let confirm=document.getElementById("confirm").value;if(name=="" || email=="" || mobile=="" || password==""){alert("All fields required");return false;}if(mobile.length!=10){alert("Mobile must be 10 digits");return false;}if(password!=confirm){alert("Passwords do not match");return false;}return true;}
+
+Database Creation
+student_db.sql
+CREATE DATABASE student_db;USE student_db;CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100),email VARCHAR(100),mobile VARCHAR(15),password VARCHAR(255));
+
+Task 3: Login Form with PHP
+login.html
+<form action="login.php" method="POST"><input type="email" name="email" placeholder="Email"><input type="password" name="password" placeholder="Password"><button type="submit">Login</button></form>
+
+db.php
+<?php$conn=mysqli_connect("localhost","root","","student_db");if(!$conn){die("Connection Failed");}?>
+
+register.php
+<?phpinclude 'db.php';$name=$_POST['name'];$email=$_POST['email'];$mobile=$_POST['mobile'];$password=password_hash($_POST['password'],PASSWORD_DEFAULT);$sql="INSERT INTO users(name,email,mobile,password)VALUES('$name','$email','$mobile','$password')";if(mysqli_query($conn,$sql)){echo "Registration Successful";}else{echo "Error";}?>
+
+login.php
+<?phpsession_start();include 'db.php';$email=$_POST['email'];$password=$_POST['password'];$sql="SELECT * FROM users WHERE email='$email'";$result=mysqli_query($conn,$sql);if(mysqli_num_rows($result)>0){$row=mysqli_fetch_assoc($result);if(password_verify($password,$row['password'])){$_SESSION['user']=$row['name'];header("Location: dashboard.php");}else{echo "Wrong Password";}}else{echo "User Not Found";}?>
+
+dashboard.php
+<?phpsession_start();if(!isset($_SESSION['user'])){header("Location: login.html");}?><h2>Welcome <?php echo $_SESSION['user']; ?></h2><a href="logout.php">Logout</a>
+
+Task 4: CRUD Operations
+update.php
+<?phpinclude 'db.php';$id=$_GET['id'];$sql="UPDATE usersSET name='Updated User'WHERE id=$id";mysqli_query($conn,$sql);echo "Updated Successfully";?>
+
+delete.php
+<?phpinclude 'db.php';$id=$_GET['id'];$sql="DELETE FROM users WHERE id=$id";mysqli_query($conn,$sql);echo "Deleted Successfully";?>
+
+logout.php
+<?phpsession_start();session_destroy();header("Location: login.html");?>
+
+Task 5: OOP Version
+Database.php
+<?phpclass Database{private $conn;public function __construct(){$this->conn=new mysqli("localhost","root","","student_db");}public function connect(){return $this->conn;}}?>
+User.php
+<?phpclass User{private $conn;public function __construct($db){$this->conn=$db;}public function register($name,$email,$mobile,$password){$sql="INSERT INTO users(name,email,mobile,password)VALUES('$name','$email','$mobile','$password')";return $this->conn->query($sql);}}?>
+
+Expected Output
+Registration Page
+
+
+Name
+
+
+Email
+
+
+Mobile
+
+
+Password
+
+
+Confirm Password
+
+
+Register Button
+
+
+Login Page
+
+
+Email
+
+
+Password
+
+
+Login Button
+
+
+Dashboard
+Welcome MaduraLogout
+Database
+id | name   | email              | mobile1  | Madura | madura@gmail.com   | 9876543210
+Viva Questions
+
+
+What is HTML?
+
+
+Why use CSS?
+
+
+What is JavaScript Validation?
+
+
+What is PHP?
+
+
+What is MySQL?
+
+
+Difference between GET and POST?
+
+
+What is Session?
+
+
+What is CRUD?
+
+
+What is SQL Injection?
+
+
+What is OOP in PHP?
+
+
+This complete project covers all 5 tasks mentioned in your assignment.
