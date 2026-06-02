@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "database.php";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 ?>
@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <title>Register from</title>
 </head>
 <body>
 
@@ -18,13 +18,13 @@ error_reporting(E_ALL);
 
     <input type="text" name="name" placeholder="Enter Name"><br><br>
 
-    <input type="number" name="age" placeholder="Enter Age"><br><br>
+    <input type="email" name="email" placeholder="Enter your email"><br><br>
 
-    <input type="number" name="mobileno" placeholder="Enter Mobile"><br><br>
+    <input type="password" name="password" placeholder="Enter password"><br><br>
 
-    <input type="email" name="email" placeholder="Enter Email"><br><br>
+    <input type="password" name="confirmpassword" placeholder="Enter confirm password"><br><br>
 
-    <input type="password" name="password" placeholder="Enter Password"><br><br>
+    <input type="tel" name="phonenum" placeholder="Enter Phone number"><br><br>
 
     <button type="submit" name="submit">Register</button>
 
@@ -35,25 +35,24 @@ error_reporting(E_ALL);
 if(isset($_POST['submit'])){
 
     $name = $_POST['name'];
-    $age = $_POST['age'];
-    $mobileno = $_POST['mobileno'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $phonenum= $_POST['phonenum'];
 
     // Validation
     if(
         empty($name) ||
-        empty($age) ||
-        empty($mobileno) ||
         empty($email) ||
-        empty($password)
+        empty($password) ||
+        empty($phonenum) 
+       
     ){
         echo "<script>alert('Please fill all fields')</script>";
     }
 
     else{
-$sql = "INSERT INTO user(name,age,mobileno,email,password)
-VALUES('$name','$age','$mobileno','$email','$password')";
+$sql = "INSERT INTO user(name,email,password,phonenum)
+VALUES('$name','$email','$password',$phonenum)";
 
 if($conn->query($sql)){
     echo "Registration Success";
