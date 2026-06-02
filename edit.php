@@ -2,7 +2,7 @@
 
 session_start();
 
-include "db.php";
+include "database.php";
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -18,15 +18,15 @@ if(!$row){
 if(isset($_POST['update'])){
 
     $name = $_POST['name'];
-    $age = $_POST['age'];
-    $mobileno = $_POST['mobileno'];
     $email = $_POST['email'];
+    $password = $_POST['password'];
+    $phonenum = $_POST['phonenum'];
 
     if(
         empty($name) ||
-        empty($age) ||
-        empty($mobileno) ||
-        empty($email)
+        empty($email) ||
+        empty($password) ||
+        empty($phonenum)
     ){
         echo "Please fill all fields";
     }
@@ -35,9 +35,9 @@ if(isset($_POST['update'])){
 
         $sql = "UPDATE user SET
         name='$name',
-        age='$age',
-        mobileno='$mobileno',
-        email='$email'
+        email='$email',
+        password='$password',
+        phonenum='$phonenum'
         WHERE id=$id";
 
         if($conn->query($sql)){
@@ -64,14 +64,14 @@ if(isset($_POST['update'])){
 <input type="text" name="name"
 value="<?php echo $row['name']; ?>"><br><br>
 
-<input type="number" name="age"
-value="<?php echo $row['age']; ?>"><br><br>
-
-<input type="number" name="mobileno"
-value="<?php echo $row['mobileno']; ?>"><br><br>
-
 <input type="email" name="email"
 value="<?php echo $row['email']; ?>"><br><br>
+
+<input type="password" name="password"
+value="<?php echo $row['password']; ?>"><br><br>
+
+<input type="tel" name="phonenum"
+value="<?php echo $row['phonenum']; ?>"><br><br>
 
 <button type="submit" name="update">Update</button>
 
