@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db.php";
+include "database.php";
 
 if(isset($_POST['login'])){
 
