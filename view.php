@@ -42,7 +42,7 @@ while($row = $result->fetch_assoc()){
 
 <td>
 
-<a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a>
+<a href="update.php?id=<?php echo $row['id']; ?>">update</a>
 
 <a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
 
