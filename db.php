@@ -4,7 +4,7 @@ $conn=new mysqli(
 'localhost',
 'root',
 'novalnet',
-'project'
+'admin'
 );
 
 if($conn->connect_error){
