@@ -15,7 +15,7 @@ if(!isset($_SESSION['user'])){
 <body>
 
 <h1>
-Welcome
+ Your login successful Welcome
 <?php echo $_SESSION['user']; ?>
 </h1>
 
