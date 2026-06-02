@@ -6,7 +6,7 @@ if(!isset($_SESSION['user'])){
     exit();
 }
 
-include "db.php";
+include "database.php";
 ?>
 
 <table border="1" cellpadding="10">
@@ -15,8 +15,8 @@ include "db.php";
 <th>ID</th>
 <th>Name</th>
 <th>Age</th>
-<th>Mobile</th>
-<th>Email</th>
+<th>email</th>
+<th>password</th>
 <th>Action</th>
 </tr>
 
@@ -34,11 +34,11 @@ while($row = $result->fetch_assoc()){
 
 <td><?php echo $row['name']; ?></td>
 
-<td><?php echo $row['age']; ?></td>
-
-<td><?php echo $row['mobileno']; ?></td>
-
 <td><?php echo $row['email']; ?></td>
+
+<td><?php echo $row['password']; ?></td>
+
+<td><?php echo $row['phonenum']; ?></td>
 
 <td>
 
