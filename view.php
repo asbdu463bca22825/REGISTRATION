@@ -9,6 +9,33 @@ if(!isset($_SESSION['user'])){
 include "database.php";
 ?>
 
+<?php
+
+class Auth
+{
+    public function checkLogin()
+    {
+        try
+        {
+            session_start();
+
+            if (!isset($_SESSION['user']))
+            {
+                throw new Exception("User not logged in");
+            }
+
+            return true;
+        }
+        catch (Exception $e)
+        {
+            header("Location: login.php");
+            exit();
+        }
+    }
+}
+?>
+
+
 <table border="1" cellpadding="10">
 
 <tr>
