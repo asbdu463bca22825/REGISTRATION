@@ -34,6 +34,27 @@ class Auth
     }
 }
 ?>
+protect. php
+<?php
+
+require_once "database.php";
+require_once "Auth.php";
+
+try
+{
+    $auth = new Auth();
+    $auth->checkLogin();
+
+    $database = new Database();
+    $conn = $database->connect();
+
+    echo "Welcome " . $_SESSION['user'];
+}
+catch (Exception $e)
+{
+    echo "Error: " . $e->getMessage();
+}
+?>
 
 
 <table border="1" cellpadding="10">
